@@ -1,0 +1,17 @@
+development:
+  adapter: postgresql
+  pool: <%= ENV.fetch("PG_MAX_THREADS") { 5 } %>
+  host: <%= ENV.fetch("PG_HOST") { "localhost" } %>
+  port: <%= ENV.fetch("PG_PORT") { 5432 } %>
+  username: <%= ENV.fetch("PG_USER") { "postgres" } %>
+  password: <%= ENV.fetch("PG_PASS") { "postgres" } %>
+  database: pakata
+
+test:
+  adapter: postgresql
+  pool: <%= ENV.fetch("PG_MAX_THREADS") { 5 } %>
+  host: <%= ENV.fetch("PG_HOST") { "localhost" } %>
+  port: <%= ENV.fetch("PG_PORT") { 5432 } %>
+  username: <%= ENV.fetch("PG_USER") { "postgres" } %>
+  password: <%= ENV.fetch("PG_PASS") { "postgres" } %>
+  database: pakata_test
