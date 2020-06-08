@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "2.7.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem "compel", "~> 0.5.0"
 gem "devise"
 gem "devise-jwt"
 gem "figaro"
@@ -19,8 +20,9 @@ gem "simple_token_authentication"
 gem "turbolinks", "~> 5"
 gem "webpacker", "~> 4.0"
 
-gem "rubocop-rails", require: false
 gem "rubocop-performance"
+gem "rubocop-rails", require: false
+gem "websocket-extensions", ">= 0.1.5"
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
@@ -38,6 +40,7 @@ group :development, :test do
 end
 
 group :development do
+  gem "annotate"
   gem "letter_opener"
   gem "listen", "~> 3.2"
   gem "spring"
