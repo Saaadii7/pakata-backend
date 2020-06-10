@@ -5,25 +5,31 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* **Ruby version**
   ruby-2.7.0
 
-* System dependencies
+* **System dependencies**
   Ruby, Node, Postgres must be installed
 
-* Configuration
+* **Configuration**
   Please set your /config/application.yml (example placed)
 
-* Database creation
+* **Database creation**
   rake db:create
 
-* Database initialization
+* **Database initialization**
   rake db:migrate && rake db:seed
 
-* How to run the test suite
+* **How to run the test suite**
+  Not yet
 
-* Services (job queues, cache servers, search engines, etc.)
+* **Services (job queues, cache servers, search engines, etc.)**
+  Not yet
 
-* Deployment instructions
+* **Deployment instructions**
+  Not yet
+
+* **Start Up**
+  rails s
 
 * ...
