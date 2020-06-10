@@ -6,14 +6,19 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version
+  ruby-2.7.0
 
 * System dependencies
+  Ruby, Node, Postgres must be installed
 
 * Configuration
+  Please set your /config/application.yml (example placed)
 
 * Database creation
+  rake db:create
 
 * Database initialization
+  rake db:migrate && rake db:seed
 
 * How to run the test suite
 

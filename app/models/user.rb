@@ -73,9 +73,9 @@ class User < ApplicationRecord
   # user.really_destroy!
 
   # associations
-  
-  # scopes 
-  
+
+  # scopes
+
   # callbacks
 
   # instance methods
