@@ -13,6 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
+    resource.add_role :customer
   end
 
   # GET /resource/edit

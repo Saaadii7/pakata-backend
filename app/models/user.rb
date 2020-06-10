@@ -35,19 +35,50 @@
 #  index_users_on_user_name             (user_name)
 #
 class User < ApplicationRecord
+  rolify
+  acts_as_paranoid
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  acts_as_paranoid
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable, :confirmable
 
+  # attributes
   enum gender: %i[male female gay lesbian confused complicated transgender shemale
                   prefer_not_to_disclose]
 
+  PASSWORD_FORMAT = /\A
+    (?=.{8,})          # Must contain 8 or more characters
+    (?=.*\d)           # Must contain a digit
+    # (?=.*[a-z])        # Must contain a lower case character
+    # (?=.*[A-Z])        # Must contain an upper case character
+    # (?=.*[[:^alnum:]]) # Must contain a symbol
+  /x
+
+  # validations
   validates :email, presence: true, uniqueness: true
   validates :first_name, presence: true
-  # client.really_destroy!
+  validates :password,
+            presence: true,
+            length: { in: Devise.password_length },
+            format: { with: PASSWORD_FORMAT },
+            confirmation: true,
+            on: :create
 
+  validates :password,
+            allow_nil: true,
+            length: { in: Devise.password_length },
+            format: { with: PASSWORD_FORMAT },
+            confirmation: true,
+            on: :update
+  # user.really_destroy!
+
+  # associations
+  
+  # scopes 
+  
+  # callbacks
+
+  # instance methods
   def age
     (Date.today - dob.to_datetime).to_i
   end

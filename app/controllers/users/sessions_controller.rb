@@ -3,9 +3,9 @@
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
   include JsonWebTokenHelper
+  respond_to :json
   # skip_before_action :verify_signed_out_user
   # before_action :require_current_user, only: :destroy
-  respond_to :json
 
   # GET /resource/sign_in
   # def new
@@ -15,7 +15,7 @@ class Users::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     user = User.find_by(email: session_params[:email])
-    if user.present? && user&.valid_password?(session_params[:password])
+    if user.present? && user&.valid_password?(session_params[:password]) && user&.confirmed?
       payload = { id: user.id, email: user.email }
       auth_token = JsonWebTokenHelper.encode(payload)
       # sign_in user
