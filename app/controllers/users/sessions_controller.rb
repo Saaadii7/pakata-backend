@@ -14,14 +14,14 @@ class Users::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-    user = User.find_by(email: session_params[:email])
-    if user.present? && user&.valid_password?(session_params[:password]) && user&.confirmed?
-      payload = { id: user.id, email: user.email }
-      auth_token = JsonWebTokenHelper.encode(payload)
-      # sign_in user
-      render json: { session: { token: auth_token } }, status: :ok
+    @user = User.find_by(email: session_params[:email])
+    if !@user&.confirmed?
+      render json: { message: "Please complete your login process" }, status: :ok
+    elsif @user.present? && @user&.valid_password?(session_params[:password])
+      payload = { id: @user.id, email: @user.email }
+      @auth_token = JsonWebTokenHelper.encode(payload)
     else
-      render json: { session: { token: nil } }, status: :ok
+      render json: { message: "Invalid Credentials" }, status: :ok
     end
   end
 

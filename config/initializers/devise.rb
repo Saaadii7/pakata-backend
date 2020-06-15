@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+Devise.secret_key = "f57292ba99a1dc62b83f79b7bb34de2b4e8f1f495e12f01b89d32d669a80fcc0b87b2e2f97dc040eaf2d2ffc4aa04a9a5cd4"
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
