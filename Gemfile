@@ -16,6 +16,7 @@ gem "rack-cors"
 gem "rails", "~> 6.0.3", ">= 6.0.3.1"
 gem "rails-healthcheck"
 gem "rolify"
+gem "rswag"
 gem "sass-rails", ">= 6"
 gem "simple_token_authentication"
 gem "turbolinks", "~> 5"
@@ -38,6 +39,8 @@ gem "bootsnap", ">= 1.4.2", require: false
 
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]
+  gem "factory_bot_rails"
+  gem "rspec-rails", "~> 4.0"
 end
 
 group :development do

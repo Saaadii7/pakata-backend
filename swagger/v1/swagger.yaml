@@ -1,0 +1,122 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/users":
+    post:
+      summary: Sign up a User
+      tags:
+      - Registration
+      parameters: []
+      responses:
+        '200':
+          description: User signup
+          content: {}
+        '400':
+          description: invalid request
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    user_name:
+                      type: string
+                    first_name:
+                      type: string
+                    last_name:
+                      type: string
+                    email:
+                      type: string
+                    password:
+                      type: string
+                    dob:
+                      type: string
+                    gender:
+                      type: string
+              required:
+              - email
+              - password
+              - first_name
+              - last_name
+              - user_name
+  "/api/users/sign_in":
+    post:
+      summary: Creates a Session
+      tags:
+      - Session
+      parameters: []
+      responses:
+        '200':
+          description: Session created
+          content: {}
+        '400':
+          description: invalid request
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                session:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
+                    role:
+                      type: string
+              required:
+              - email
+              - password
+              - role
+  "/api/users/confirm_email":
+    post:
+      summary: Checks if email exists
+      tags:
+      - Session
+      parameters: []
+      responses:
+        '200':
+          description: Email found
+          content: {}
+        '404':
+          description: Email not found
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                session:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+              required:
+              - email
+          application/xml:
+            schema:
+              type: object
+              properties:
+                session:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+              required:
+              - email
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000

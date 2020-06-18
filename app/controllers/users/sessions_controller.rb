@@ -15,7 +15,9 @@ class Users::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     @user = User.find_by(email: session_params[:email])
-    if !@user&.confirmed?
+    if @user.blank?
+      render json: { message: "Email not found" }, status: :not_found
+    elsif !@user&.confirmed?
       render json: { message: "Please complete your login process" }, status: :bad_request
     elsif !@user.has_role? session_params[:role]
       render json: { message: "Invalid Role selected" }, status: :bad_request
@@ -30,8 +32,10 @@ class Users::SessionsController < Devise::SessionsController
   # POST /resource/confirm_email
   def confirm_email
     @user = User.find_by(email: session_params[:email])
-    unless @user.present?
-      render json: { message: "Email not found" }, status: :bad_request
+    if @user.blank?
+      render json: { message: "Email not found" }, status: :not_found
+    elsif !@user&.confirmed?
+      render json: { message: "Please complete your login process" }, status: :bad_request
     end
   end
 

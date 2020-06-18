@@ -81,5 +81,7 @@ class User < ApplicationRecord
   # instance methods
   def age
     (Date.today - dob.to_datetime).to_i
+  rescue
+    0
   end
 end

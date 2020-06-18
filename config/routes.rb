@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount Rswag::Ui::Engine => '/api-docs'
+  mount Rswag::Api::Engine => '/api-docs'
   Healthcheck.routes(self)
   scope :api, defaults: {format: :json} do
     # devise_for :users, skip: :all
